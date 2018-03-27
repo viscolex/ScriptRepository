@@ -1,11 +1,9 @@
 #!/bin/bash
-echo "Solaris Masternode Install"
-apt update
-apt upgrade
-sudo apt-get install nano
-mkdir solaris
-cd solaris 
-wget https://github.com/Solaris-Project/Solaris/releases/download/v2.5.0.0/solaris-daemon-2.5.0.0-linux64.tar.gz
-tar xzvf solaris-daemon-2.5.0.0-linux64.tar.gz
-./solarisd -daemon
+wget -O /root/.solaris/masternode.conf https://raw.githubusercontent.com/HysMagus/ScriptRepository/master/crypto/masternode/masternode.conf
+echo "Copy the contents from your local Masternode.conf to the VPS"
 nano /root/.solaris/masternode.conf
+nano /root/.solaris/masternode.conf
+echo "Copy the contents from your local solaris.conf to the VPS"
+wget -O /root/.solaris/solaris.conf https://raw.githubusercontent.com/HysMagus/ScriptRepository/master/crypto/masternode/solaris.conf
+nano /root/.solaris/solaris.conf
+./solarisd -daemon
