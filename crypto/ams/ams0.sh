@@ -8,6 +8,6 @@ cd ams
 wget https://github.com/CoinProjects/AmsterdamCoin-v4/releases/download/v4.1.0.0/amsterdamcoin-daemon-4.1.0.0-linux64.tar.gz
 tar xzvf amsterdamcoin-daemon-4.1.0.0-linux64.tar.gz
 ./amsterdamcoind -daemon
-wget https://raw.githubusercontent.com/HysMagus/ScriptRepository/master/crypto/masternode/solaris1.sh
-chmod +x solaris1.sh
-sudo bash solaris1.sh
+wget https://raw.githubusercontent.com/viscolex/ScriptRepository/master/crypto/ams/ams1.sh
+chmod +x ams1.sh
+sudo bash ams1.sh
