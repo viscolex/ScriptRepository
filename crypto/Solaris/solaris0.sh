@@ -3,10 +3,11 @@ echo "Solaris Install Part 1"
 apt update
 apt upgrade
 echo "Install text editor"
+echo "This part can sometimes fail"
 sudo apt-get install nano
 echo "Create Solaris folder"
 mkdir solaris
-cd solaris 
+cd solaris
 wget https://github.com/Solaris-Project/Solaris/releases/download/v2.8.0.0/solaris-daemon-2.8.0.0-linux64.tar.gz
 tar xzvf solaris-daemon-2.8.0.0-linux64.tar.gz
 ./solarisd -daemon
