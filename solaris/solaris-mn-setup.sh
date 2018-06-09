@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# Write variables
-privkey=$1
 
 echo "Solaris Install Part 1"
 apt update
@@ -35,7 +33,7 @@ echo "server=1" >>/root/.solaris/solaris.conf
 echo "externalip="$IP":60020" >>/root/.solaris/solaris.conf
 echo "masternodeaddr="$IP":60020" >>/root/.solaris/solaris.conf
 echo "masternode=1" >>/root/.solaris/solaris.conf
-echo "masternodeprivkey="$privkey >>/root/.solaris/solaris.conf
+echo "masternodeprivkey="$1 >>/root/.solaris/solaris.conf
 cat /root/.solaris/solaris.conf
 
 Echo "Part 4, start daemon"
