@@ -1,15 +1,12 @@
 #!/bin/bash
-
-
 echo "Solaris Install Part 1"
 apt update
 apt upgrade
+
 echo "Install nano and curl"
 sudo apt-get install -y nano
 sudo apt-get install -y curl
-
 echo "Part 2, download wallet"
-
 mkdir /root/solaris
 cd /root/solaris
 wget https://github.com/Solaris-Project/Solaris/releases/download/v2.8.0.0/solaris-daemon-2.8.0.0-linux64.tar.gz
