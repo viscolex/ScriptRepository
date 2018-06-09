@@ -15,7 +15,7 @@ cp solarisd solaris-cli /usr/local/bin
 
 solarisd -daemon
 
-echo "Part 3, create solaris.conf"
+echo "Part 3, create solaris.conf and start daemon"
 IP=$(curl http://checkip.amazonaws.com/)
 PW=$(date +%s | sha256sum | base64 | head -c 32 ;)
 echo "==========================================================="
@@ -33,5 +33,4 @@ echo "masternode=1" >>/root/.solaris/solaris.conf
 echo "masternodeprivkey="$1 >>/root/.solaris/solaris.conf
 cat /root/.solaris/solaris.conf
 
-Echo "Part 4, start daemon"
 solarisd
