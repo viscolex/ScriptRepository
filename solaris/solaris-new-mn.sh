@@ -14,6 +14,7 @@ tar xzvf solaris-daemon-2.8.1.0-linux64.tar.gz
 cp solarisd solaris-cli /usr/local/bin
 
 echo "Part 3, create solaris.conf and start daemon"
+cat /root/.solaris/solaris.conf
 IP=$(curl http://checkip.amazonaws.com/)
 PW=$(date +%s | sha256sum | base64 | head -c 32 ;)
 echo "==========================================================="
@@ -29,6 +30,5 @@ echo "externalip="$IP":60020" >>/root/.solaris/solaris.conf
 echo "masternodeaddr="$IP":60020" >>/root/.solaris/solaris.conf
 echo "masternode=1" >>/root/.solaris/solaris.conf
 echo "masternodeprivkey="$1 >>/root/.solaris/solaris.conf
-cat /root/.solaris/solaris.conf
 
 solarisd -daemon
