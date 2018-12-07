@@ -31,4 +31,5 @@ echo "masternodeaddr="$IP":60020" >>/root/.solaris/solaris.conf
 echo "masternode=1" >>/root/.solaris/solaris.conf
 echo "masternodeprivkey="$1 >>/root/.solaris/solaris.conf
 
+
 solarisd -daemon
