@@ -13,7 +13,7 @@ wget https://github.com/Solaris-Project/Solaris/releases/download/v2.8.1.0/solar
 tar xzvf solaris-daemon-2.8.1.0-linux64.tar.gz
 cp solarisd solaris-cli /usr/local/bin
 
-solarisd -daemon
+solarisd
 
 echo "Part 3, create solaris.conf and start daemon"
 IP=$(curl http://checkip.amazonaws.com/)
@@ -33,4 +33,4 @@ echo "masternode=1" >>/root/.solaris/solaris.conf
 echo "masternodeprivkey="$1 >>/root/.solaris/solaris.conf
 cat /root/.solaris/solaris.conf
 
-solarisd
+solarisd -daemon
