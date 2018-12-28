@@ -3,7 +3,7 @@
 echo "Creating Swap File..."
 echo "This may take a few minutes, please be patient."
 
-sudo dd if=/dev/zero of=/mnt/swapfile bs=1024 count=2097152
+sudo dd if=/dev/zero of=/swapfile bs=1024 count=2097152
 
 sudo mkswap /swapfile
 
