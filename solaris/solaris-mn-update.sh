@@ -17,6 +17,7 @@ echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
 
 echo "Installing new Solaris wallet version...."
 
+cd /root/solaris
 wget https://github.com/Solaris-Project/Solaris/releases/download/v2.8.1.0/solaris-daemon-2.8.1.0-linux64.tar.gz
 tar xzvf solaris-daemon-2.8.1.0-linux64.tar.gz
 
