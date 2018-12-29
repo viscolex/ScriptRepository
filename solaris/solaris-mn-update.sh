@@ -14,6 +14,6 @@ echo "Installing new Solaris wallet version...."
 wget https://github.com/Solaris-Project/Solaris/releases/download/v2.8.1.0/solaris-daemon-2.8.1.0-linux64.tar.gz
 tar xzvf solaris-daemon-2.8.1.0-linux64.tar.gz
 
-echo "Startining the wallet and synchronizing from Block 0..."
+echo "Launching the wallet and synchronizing from Block 0..."
 
 ./solarisd -daemon -reindex
