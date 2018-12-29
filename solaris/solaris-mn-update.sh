@@ -1,5 +1,11 @@
 #!/bin/bash
 
+echo "Stopping current Solaris wallet incase it is still running...."
+
+cd solaris
+./solaris-cli stop
+cd ..
+
 echo "Creating Swap File..."
 echo "This may take a few minutes, please be patient..."
 
