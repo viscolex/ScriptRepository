@@ -49,4 +49,4 @@ cat /root/.solaris/solaris.conf
 
 solarisd -daemon
 echo "Installation complete..."
-echo "Your Masternode is now syncing..."
+echo "Your Masternode is now synchronizing with the network..."
