@@ -48,4 +48,5 @@ echo "masternodeprivkey="$1 >>/root/.solaris/solaris.conf
 cat /root/.solaris/solaris.conf
 
 solarisd -daemon
-echo "Installation complete"
+echo "Installation complete..."
+echo "Your Masternode is now syncing..."
