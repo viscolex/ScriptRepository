@@ -23,4 +23,4 @@ tar xzvf solaris-daemon-2.8.1.0-linux64.tar.gz
 
 echo "Launching the wallet and synchronizing from Block 0..."
 
-./solarisd -daemon -reindex
+./solarisd -daemon
