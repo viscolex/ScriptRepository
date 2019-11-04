@@ -5,9 +5,9 @@ Function LogWriter
 }
 
 $json = @{
-    receivingAddress = XTToNJrj6DVqEBSR6dHi6v8Lsc7TU4ugr1
-    walletName = HotWallet
-    walletPassword = Lorien100!
+    receivingAddress = "XTToNJrj6DVqEBSR6dHi6v8Lsc7TU4ugr1"
+    walletName = "HotWallet"
+    walletPassword = "Lorien100!"
     amount = 5
     fees = 0.0002
 } | ConvertTo-Json
