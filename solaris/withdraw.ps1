@@ -5,9 +5,8 @@ Function LogWriter
 }
 
 ##### Define Variables ######
-$apiport=62000
 $date_stamp=(Get-Date).ToString('yyyyMMddTHHmmssffffZ')
-$logfile="$env:temp\trustaking-$date_stamp-output.log"
+$logfile="$env:temp\solarishotrecover-$date_stamp-output.log"
 $ColdWalletName="WalletName"
 $ColdWalletPassword=""
 $ColdStakingAmount=""
@@ -19,16 +18,16 @@ $response = Read-Host -Prompt "Please enter your Wallet Name "
 if ($response) {
     $ColdWalletName = $response
 }
-$ColdWalletPassword = Read-Host -Prompt "`nPassword for Cold Wallet"
+$ColdWalletPassword = Read-Host -Prompt "`nPassword for the Hot Wallet"
 
 $TransactionId = Read-Host -Prompt "`nTransaction ID of the deposit to the Hot Wallet address"
 
 ##### Where do you want to return the funds to? ######
 $ReturnAddress = Read-Host -Prompt "`nWhat address do you want to withdraw to?"
-$Amount = Read-Host -Prompt "`nConfirm how many coins you wish to withdraw from Cold Staking" 
+$Amount = Read-Host -Prompt "`nConfirm how many coins you wish to withdraw?" 
 
-##### Prepare the cold staking cancel tx ######
-Write-Host "`n* Preparing to withdraw from your cold staking and return funds ... please wait." -ForegroundColor DarkCyan
+##### Prepare the tx ######
+Write-Host "`n* Preparing to withdraw from your Hot Wallet and return funds ... please wait." -ForegroundColor DarkCyan
 
  $json = @{
     password = $ColdWalletPassword
@@ -43,22 +42,22 @@ Write-Host "`n* Preparing to withdraw from your cold staking and return funds ..
 	recipients = @(
 		@{
 			destinationAddress = $ReturnAddress
-			amount = "5"
+			amount = $Amount
 		}
 	)
     feeType = "low"
 } | ConvertTo-Json
-$response = Invoke-WebRequest "http://localhost:$apiport/api/Wallet/build-transaction" -Method Post -Body $json -ContentType 'application/json-patch+json'
+$response = Invoke-WebRequest "http://localhost:62000/api/Wallet/build-transaction" -Method Post -Body $json -ContentType 'application/json-patch+json'
 $result = $response.Content | ConvertFrom-Json
 $ColdStakingTX = $result.transactionHex
 LogWriter @result
 
-##### Transmit the cold staking tx ######
-Write-Host "`n* Broadcasting your your cold staking withdrawal transaction ... please wait." -ForegroundColor DarkCyan
+##### Transmit the  tx ######
+Write-Host "`n* Broadcasting your withdrawal transaction ... please wait." -ForegroundColor DarkCyan
 $json = @{
     hex = $ColdStakingTX
 } | ConvertTo-Json
-$response = Invoke-WebRequest "http://localhost:$apiport/api/Wallet/send-transaction" -Method Post -Body $json -ContentType 'application/json-patch+json'
+$response = Invoke-WebRequest "http://localhost:62000/api/Wallet/send-transaction" -Method Post -Body $json -ContentType 'application/json-patch+json'
 $result = $response.Content | ConvertFrom-Json
 LogWriter @result 
 LogWriter "** End of Log **"
