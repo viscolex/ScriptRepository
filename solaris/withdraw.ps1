@@ -49,13 +49,13 @@ Write-Host "`n* Preparing to withdraw from your Hot Wallet and return funds ... 
 } | ConvertTo-Json
 $response = Invoke-WebRequest "http://localhost:62000/api/Wallet/build-transaction" -Method Post -Body $json -ContentType 'application/json-patch+json'
 $result = $response.Content | ConvertFrom-Json
-$ReturnTXID = $result.transactionHex
+$ColdStakingTX = $result.transactionHex
 LogWriter @result
 
 ##### Transmit the  tx ######
 Write-Host "`n* Broadcasting your withdrawal transaction ... please wait." -ForegroundColor DarkCyan
 $json = @{
-    hex = $ReturnTXID
+    hex = $ColdStakingTX
 } | ConvertTo-Json
 $response = Invoke-WebRequest "http://localhost:62000/api/Wallet/send-transaction" -Method Post -Body $json -ContentType 'application/json-patch+json'
 $result = $response.Content | ConvertFrom-Json
@@ -65,4 +65,4 @@ LogWriter "** End of Log **"
 Write-Host "`nTransaction complete.  Here are your withdrawal transaction details:" 
 Write-Host "Return address:" $ReturnAddress
 Write-Host "Amount        :" $Amount
-Write-Host "Hex or error  :" $ReturnTXID "`n"
+Write-Host "Hex or error  :" $ColdStakingTX "`n"
