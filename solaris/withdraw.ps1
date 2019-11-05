@@ -4,31 +4,21 @@ Function LogWriter
     Add-Content $logfile -value $logstring
 }
 
-class TrustAllCertsPolicy : System.Net.ICertificatePolicy {
-    [bool] CheckValidationResult([System.Net.ServicePoint] $a,
-                                 [System.Security.Cryptography.X509Certificates.X509Certificate] $b,
-                                 [System.Net.WebRequest] $c,
-                                 [int] $d) {
-        return $true
-    }
-}
-[System.Net.ServicePointManager]::CertificatePolicy = [TrustAllCertsPolicy]::new()
-
 ##### Define Variables ######
 $date_stamp=(Get-Date).ToString('yyyyMMddTHHmmssffffZ')
 $logfile="$env:temp\solarishotrecover-$date_stamp-output.log"
-$ColdWalletName="WalletName"
-$ColdWalletPassword=""
-$ColdStakingAmount=""
-$ColdStakingTX=""
+$WalletName="WalletName"
+$WalletPassword=""
+$Amount=""
+$ReturnTX=""
 
 ######## Get some information from the user about the wallet ############
 Clear-Host
 $response = Read-Host -Prompt "Please enter your Wallet Name " 
 if ($response) {
-    $ColdWalletName = $response
+    $WalletName = $response
 }
-$ColdWalletPassword = Read-Host -Prompt "`nPassword for the Hot Wallet"
+$WalletPassword = Read-Host -Prompt "`nPassword for the Hot Wallet"
 
 $TransactionId = Read-Host -Prompt "`nTransaction ID of the deposit to the Hot Wallet address"
 
@@ -59,13 +49,13 @@ Write-Host "`n* Preparing to withdraw from your Hot Wallet and return funds ... 
 } | ConvertTo-Json
 $response = Invoke-WebRequest "http://localhost:62000/api/Wallet/build-transaction" -Method Post -Body $json -ContentType 'application/json-patch+json'
 $result = $response.Content | ConvertFrom-Json
-$ColdStakingTX = $result.transactionHex
+$ReturnTX = $result.transactionHex
 LogWriter @result
 
 ##### Transmit the  tx ######
 Write-Host "`n* Broadcasting your withdrawal transaction ... please wait." -ForegroundColor DarkCyan
 $json = @{
-    hex = $ColdStakingTX
+    hex = $ReturnTX
 } | ConvertTo-Json
 $response = Invoke-WebRequest "http://localhost:62000/api/Wallet/send-transaction" -Method Post -Body $json -ContentType 'application/json-patch+json'
 $result = $response.Content | ConvertFrom-Json
@@ -75,4 +65,4 @@ LogWriter "** End of Log **"
 Write-Host "`nTransaction complete.  Here are your withdrawal transaction details:" 
 Write-Host "Return address:" $ReturnAddress
 Write-Host "Amount        :" $Amount
-Write-Host "Hex or error  :" $ColdStakingTX "`n"
+Write-Host "Hex or error  :" $ReturnTX "`n"
