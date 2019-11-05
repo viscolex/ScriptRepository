@@ -43,7 +43,7 @@ Write-Host "`n* Preparing to withdraw from your cold staking and return funds ..
 	recipients = @(
 		@{
 			destinationAddress = $ReturnAddress
-			amount = $Amount
+			amount = "5"
 		}
 	)
     feeType = "low"
