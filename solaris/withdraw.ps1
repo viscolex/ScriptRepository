@@ -30,8 +30,8 @@ $Amount = Read-Host -Prompt "`nConfirm how many coins you wish to withdraw?"
 Write-Host "`n* Preparing to withdraw from your Hot Wallet and return funds ... please wait." -ForegroundColor DarkCyan
 
  $json = @{
-    password = $ColdWalletPassword
-	walletName = $ColdWalletName
+    password = $WalletPassword
+	walletName = $WalletName
 	accountName = "coldStakingHotAddresses"
 	outpoints = @(
 		@{
