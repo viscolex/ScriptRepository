@@ -55,7 +55,7 @@ LogWriter @result
 ##### Transmit the  tx ######
 Write-Host "`n* Broadcasting your withdrawal transaction ... please wait." -ForegroundColor DarkCyan
 $json = @{
-    hex = $ReturnTX
+    hex = 01000000c7cec25d01b5be5d870ab39a2e371d7326cf103721ccb1adf1f33daeb32df918ee9cecb2d2010000006b483045022100a074350be73574a9323b70759417721f99949b80263932a2ba8ca847fe43ea3e02200ea32cb86c42c6a8ed0d00a4209cbeb88fc78ef1ae560eb510bc20fdd383c55e012102604a16d5bca08f4a006da0e1bb989383d58d2b34b015d5351a74c96b6083a7ebffffffff02f03dcd1d000000001976a914b9957a50157d2aa5605565a580350dd753c3aa8888ac0065cd1d000000001976a914b0bfa79a1ab03f89c963806fb4b683a699920a3588ac00000000
 } | ConvertTo-Json
 $response = Invoke-WebRequest "http://localhost:62000/api/Wallet/send-transaction" -Method Post -Body $json -ContentType 'application/json-patch+json'
 $result = $response.Content | ConvertFrom-Json
