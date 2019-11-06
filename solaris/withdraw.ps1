@@ -49,7 +49,7 @@ Write-Host "`n* Preparing to withdraw from your Hot Wallet and return funds ... 
 } | ConvertTo-Json
 $response = Invoke-WebRequest "http://localhost:62000/api/Wallet/build-transaction" -Method Post -Body $json -ContentType 'application/json-patch+json'
 $result = $response.Content | ConvertFrom-Json
-$ReturnTX = $result.transactionHex
+$ReturnTX = $result.hex
 LogWriter @result
 
 ##### Transmit the  tx ######
