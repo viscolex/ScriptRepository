@@ -8,7 +8,7 @@ Function LogWriter
 $date_stamp=(Get-Date).ToString('yyyyMMddTHHmmssffffZ')
 $logfile="$env:temp\solarishotrecover-$date_stamp-output.log"
 $WalletName="WalletName"
-$WalletPassword=''
+$WalletPassword=""
 $Amount=""
 $ReturnTX=""
 
